@@ -1,6 +1,7 @@
 // Entry point for the application server.
 import 'dotenv/config';
 import express from 'express';
+import { buildStatus } from '@/routes';
 import { HomePage } from '@/pages';
 
 const app = express();
@@ -11,6 +12,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use(
+  buildStatus,
 );
 
 app.listen(port, () => {
