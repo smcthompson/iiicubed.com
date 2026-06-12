@@ -1,0 +1,175 @@
+/* Body styling */
+body {
+  background-color: red;
+  counter-reset: code;
+}
+/* Code styling */
+code {
+  background-color: darksalmon;
+  cursor: copy;
+}
+code:active {
+  opacity: 0.5;
+}
+body > code {
+  white-space: pre;
+  display: block;
+  margin: 0 1em;
+  overflow: auto;
+  max-height: 24lh;
+}
+code > pre {
+  margin: 0;
+  display: inline;
+}
+code > pre::before {
+  counter-increment: code;
+  content: counter(code, decimal-leading-zero);
+  border-right: 0.2em solid white;
+  font-weight: bold;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  margin-right: 1.4em;
+  background-color: green;
+  color: white;
+}
+/* Table styling */
+table, th, td {
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+}
+/* Caption styling */
+caption {
+  background-color: black;
+  color: white;
+  font-style: italic;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  display: none;
+  border-radius: 1em;
+}
+/* Table styling */
+table:hover caption {
+  display: table-caption;
+  animation-name: showCaption;
+  animation-delay: 10s;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+table:hover th:nth-of-type(1) {
+  border-bottom: none;
+}
+/* Column colors using <col /> */
+table col:nth-of-type(1) {
+  text-align: right;
+  background-color: red;
+}
+table col:nth-of-type(2) {
+  text-align: center;
+  background-color: white;
+}
+table col:nth-of-type(3) {
+  text-align: left;
+  background-color: blue;
+}
+/* Changing column colors for each <tbody /> group */
+tbody:nth-of-type(2) td:nth-of-type(1) {
+  background-color: green;
+}
+tbody:nth-of-type(2) td:nth-of-type(2) {
+  background-color: white;
+}
+tbody:nth-of-type(2) td:nth-of-type(3) {
+  background-color: red;
+}
+tbody:nth-of-type(3) td:nth-of-type(1) {
+  background-color: white;
+}
+tbody:nth-of-type(3) td:nth-of-type(2) {
+  background-color: red;
+}
+tbody:nth-of-type(3) td:nth-of-type(3) {
+  background-color: white;
+}
+/* Animation keyframes */
+@keyframes showCaption {
+  to {
+    display: none;
+    /* visibility: hidden; */
+    opacity: 0;
+  }
+}
+@keyframes anotherWay {
+  0%, 100% {
+    opacity: 0;
+    /* visibility: hidden; */
+  }
+  50% {
+    opacity: 1;
+    /* visibility: visible; */
+  }
+}
+/* Responsive Styling */
+@media (pointer: coarse), (hover: none) {
+  /* [title] {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  } */
+  [title]::after {
+    content: "";
+  }
+  [title] {
+    user-select: none;
+  }
+  /* [title]:hover {
+    user-select: auto;
+  } */
+  [title]:hover::after {
+    content: attr(title);
+    /* position: absolute;
+    top: 90%;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid;
+    width: fit-content;
+    padding: 3px; */
+  }
+}
+@media screen and (min-width: 300px) {
+  body {
+    background-color: orange;
+  }
+}
+@media screen and (min-width: 400px) {
+  body {
+    background-color: yellow;
+  }
+}
+@media screen and (min-width: 600px) {
+  body {
+    background-color: green;
+  }
+}
+@media screen and (min-width: 800px) {
+  body {
+    background-color: blue;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body {
+    background-color: indigo;
+  }
+}
+@media screen and (min-width: 1280px) {
+  body {
+    background-color: violet;
+  }
+}

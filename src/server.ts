@@ -13,6 +13,7 @@ app.get('/', (_req, res) => {
 
 app.use(
   buildStatus,
+  express.static('public'),
 );
 
 app.listen(port, () => {
