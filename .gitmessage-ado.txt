@@ -1,6 +1,6 @@
-# Here is the summary…
+Here is the summary...
 
 ...a more detailed description of the commit.
 
-Issue #2
-Task #3
+Issue AB#2
+Task AB#3
