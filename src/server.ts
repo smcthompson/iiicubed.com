@@ -3,9 +3,12 @@ import 'dotenv/config';
 import express from 'express';
 import { buildStatus } from '@/routes';
 import { HomePage } from '@/pages';
+import { enableDevLiveReload } from '@/services';
 
 const app = express();
 const port = Number(process.env.PORT ?? 3000);
+
+enableDevLiveReload(app);
 
 app.get('/', (_req, res) => {
   res.send(HomePage());
