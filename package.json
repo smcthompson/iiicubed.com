@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "prestart": "npm run build",
     "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test --reporter=line,junit,html"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.2",
     "@typescript-eslint/parser": "^8.61.0",
