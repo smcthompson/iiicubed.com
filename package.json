@@ -10,7 +10,7 @@
     "prestart": "npm run build",
     "start": "node dist/server.js",
     "test:e2e": "playwright test",
-    "test:e2e:ci": "playwright test --reporter=line,junit,html"
+    "test:e2e:ci": "playwright test"
   },
   "repository": {
     "type": "git",
