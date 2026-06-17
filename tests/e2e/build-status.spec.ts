@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('Build Status Page @e2e @[18]', async ({ page }) => {
   await page.goto('/build-status');
+test('Build Status Page', {
+  tag: [
+    '@[22]',
+    '@e2e'],
+  }, async ({ page }) => {
 
   await expect(
     page.getByRole('heading')
