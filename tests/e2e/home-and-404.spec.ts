@@ -1,7 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('Home Page @e2e @[19]', async ({ page }) => {
   await page.goto('/');
+test('Home Page', {
+  tag: [
+    '@[23]',
+    '@e2e',
+  ]
+}, async ({ page }) => {
 
   await expect(
     page.getByRole('heading', { name: /qa dashboard/i })
@@ -12,7 +17,12 @@ test('Home Page @e2e @[19]', async ({ page }) => {
   ).toBeVisible();
 });
 
-test('Unknown Route Returns 404 @e2e @[20]', async ({ page }) => {
+test('Unknown Route Returns 404', {
+  tag: [
+    '@[24]',
+    '@e2e',
+  ]
+}, async ({ page }) => {
   const missingRoute = '/does-not-exist';
   const response = await page.goto(missingRoute);
 
