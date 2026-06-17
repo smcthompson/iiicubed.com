@@ -138,3 +138,6 @@ dist
 # Playwright test results
 test-results/
 playwright-report/
+
+# Debugging artifacts
+rest.http
