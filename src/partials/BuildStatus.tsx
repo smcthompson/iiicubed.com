@@ -1,9 +1,4 @@
-interface BuildStatusProps {
-  buildNumber: string;
-  status: string;
-  testsPassed: number;
-  testsFailed: number;
-}
+import type { BuildStatusProps } from '#/types';
 
 export function BuildStatus(props: BuildStatusProps) {
   return (
