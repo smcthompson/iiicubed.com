@@ -41,7 +41,7 @@ export default tseslint.config(
           patterns: [
             {
               group: ['./', './**', '../', '../**'],
-              message: 'Use @/... aliases instead of relative imports.',
+              message: 'Use #/... aliases instead of relative imports.',
             },
           ],
         },

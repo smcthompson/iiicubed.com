@@ -1,1 +1,1 @@
-export * from '@/pages/HomePage';
+export * from '#/pages/HomePage.js';

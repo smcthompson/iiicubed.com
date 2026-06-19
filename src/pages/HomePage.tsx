@@ -1,4 +1,4 @@
-import { Layout } from '@/components';
+import { Layout } from '#/components';
 
 export function HomePage() {
   const appName: string = process.env.APP_NAME || 'QA Dashboard';
