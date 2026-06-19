@@ -116,5 +116,7 @@ export function enableDevLiveReload(app: Express): void {
   process.once('SIGINT', cleanup);
   process.once('SIGTERM', cleanup);
 
+  // Diagnostic output is useful during local development.
+  // eslint-disable-next-line no-console
   console.log(`[dev-reload] watching ${watchedRoots.length} path(s)`);
 }
