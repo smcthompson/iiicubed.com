@@ -1,1 +1,1 @@
-export * from '@/partials/BuildStatus';
+export * from '#/partials/BuildStatus.js';

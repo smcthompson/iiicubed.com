@@ -24,6 +24,15 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "imports": {
+    "#/components": "./dist/components/index.js",
+    "#/pages": "./dist/pages/index.js",
+    "#/partials": "./dist/partials/index.js",
+    "#/routes": "./dist/routes/index.js",
+    "#/services": "./dist/services/index.js",
+    "#/types": "./dist/types/index.js",
+    "#/*": "./dist/*"
+  },
   "bugs": {
     "url": "https://github.com/smcthompson/iiicubed.com/issues"
   },

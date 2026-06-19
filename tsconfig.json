@@ -4,7 +4,13 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "paths": {
-      "@/*": ["./src/*"]
+      "#/components": ["./src/components/index.ts"],
+      "#/pages": ["./src/pages/index.ts"],
+      "#/partials": ["./src/partials/index.ts"],
+      "#/routes": ["./src/routes/index.ts"],
+      "#/services": ["./src/services/index.ts"],
+      "#/types": ["./src/types/index.ts"],
+      "#/*": ["./src/*"]
     },
 
     "strict": true,

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getBuildStatus } from '@/services';
-import { BuildStatus } from '@/partials';
+import { getBuildStatus } from '#/services';
+import { BuildStatus } from '#/partials';
 
 const buildStatus = Router();
 

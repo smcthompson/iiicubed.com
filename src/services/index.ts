@@ -1,2 +1,2 @@
-export * from '@/services/buildService';
-export * from '@/services/devLiveReload';
+export * from '#/services/buildService.js';
+export * from '#/services/devLiveReload.js';

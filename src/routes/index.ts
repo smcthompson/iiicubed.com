@@ -1,1 +1,1 @@
-export * from '@/routes/builds';
+export * from '#/routes/builds.js';
