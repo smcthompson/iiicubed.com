@@ -20,5 +20,7 @@ app.use(
 );
 
 app.listen(port, () => {
+  // Startup log is intentional for local and CI smoke diagnostics.
+  // eslint-disable-next-line no-console
   console.log(`Server is running on http://localhost:${port}`);
 });

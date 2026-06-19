@@ -7,6 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "npm run lint && tsc && tsc-alias",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prestart": "npm run build",
     "start": "node dist/server.js",
     "test:e2e": "playwright test",
@@ -19,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/smcthompson/iiicubed.com/issues"
   },
@@ -30,6 +31,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.60.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.2",
@@ -37,6 +39,7 @@
     "eslint": "^10.4.1",
     "prettier": "^3.8.4",
     "tsc-alias": "^1.8.17",
+    "typescript-eslint": "^8.61.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   }
