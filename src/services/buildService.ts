@@ -3,6 +3,6 @@ export async function getBuildStatus() {
     buildNumber: '2026.06.10.1',
     status: 'Passed',
     testsPassed: 312,
-    testsFailed: 0
+    testsFailed: 0,
   };
 }
