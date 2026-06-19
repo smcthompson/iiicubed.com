@@ -5,9 +5,9 @@ import { BuildStatus } from '@/partials';
 const buildStatus = Router();
 
 buildStatus.get('/build-status', async (req, res) => {
-    const buildStatus = await getBuildStatus();
+  const buildStatus = await getBuildStatus();
 
-    res.send(BuildStatus(buildStatus));
+  res.send(BuildStatus(buildStatus));
 }) as Router;
 
 export { buildStatus };

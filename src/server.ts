@@ -14,10 +14,7 @@ app.get('/', (_req, res) => {
   res.send(HomePage());
 });
 
-app.use(
-  buildStatus,
-  express.static('public'),
-);
+app.use(buildStatus, express.static('public'));
 
 app.listen(port, () => {
   // Startup log is intentional for local and CI smoke diagnostics.

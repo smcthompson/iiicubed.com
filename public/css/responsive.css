@@ -34,7 +34,9 @@ code > pre::before {
   color: white;
 }
 /* Table styling */
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   width: 100%;
   border-collapse: collapse;
@@ -107,7 +109,8 @@ tbody:nth-of-type(3) td:nth-of-type(3) {
   }
 }
 @keyframes anotherWay {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     /* visibility: hidden; */
   }
@@ -124,7 +127,7 @@ tbody:nth-of-type(3) td:nth-of-type(3) {
     justify-content: center;
   } */
   [title]::after {
-    content: "";
+    content: '';
   }
   [title] {
     user-select: none;
