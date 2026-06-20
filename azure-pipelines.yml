@@ -9,7 +9,7 @@ pr:
       - '*'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: Default
 
 variables:
   NODE_VERSION: '22.x'
