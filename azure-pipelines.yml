@@ -9,7 +9,9 @@ pr:
       - '*'
 
 pool:
-  vmImage: Default
+  name: Default
+  demands:
+    - Agent.Name -equals Tydirium
 
 variables:
   NODE_VERSION: '22.x'
