@@ -32,36 +32,55 @@ steps:
       set -euo pipefail
 
       LOG_FILE="server.log"
-      > "$LOG_FILE"   # Clear log file
+      > "$LOG_FILE"
 
       echo "Starting server in background..."
-      node dist/server.js > "$LOG_FILE" 2>&1 &
+      NODE_ENV=production node dist/server.js > "$LOG_FILE" 2>&1 &
       SERVER_PID=$!
       trap 'kill $SERVER_PID 2>/dev/null || true; cat "$LOG_FILE"' EXIT
 
       echo "Waiting for 'Server is running' message..."
 
-      # Wait up to 60 seconds for the ready message
-      if timeout 60s tail -f -n0 "$LOG_FILE" | grep -q "Server is running on http://localhost:3000"; then
-        echo "✅ Server ready message detected!"
-        
-        # Optional: Give it 2 extra seconds to fully settle
-        sleep 2
-        
-        # Final health check
-        if curl --fail --silent --show-error --max-time 5 http://localhost:3000/ > /dev/null; then
-          echo "✅ Health check passed with curl"
-          tail -n 15 "$LOG_FILE"
-          exit 0
-        else
-          echo "⚠️ Ready message found but curl check failed"
-          tail -n 30 "$LOG_FILE"
+      READY=0
+      for i in $(seq 1 60); do
+        if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+          echo "Server process exited before readiness check."
+          tail -n 50 "$LOG_FILE"
           exit 1
         fi
-      else
-        echo "❌ Timeout waiting for ready message"
+
+        if grep -q "Server is running on http://localhost:3000" "$LOG_FILE"; then
+          READY=1
+          break
+        fi
+
+        sleep 1
+      done
+
+      if [ "$READY" -ne 1 ]; then
+        echo "Timeout waiting for ready message"
         tail -n 50 "$LOG_FILE"
+        exit 1
+      fi
+
+      echo "Server ready message detected"
+
+      if curl --fail --silent --show-error --max-time 5 http://localhost:3000/ > /dev/null; then
+        echo "Health check passed with curl"
+        tail -n 15 "$LOG_FILE"
+        exit 0
+      else
+        echo "Ready message found but curl check failed"
+        tail -n 30 "$LOG_FILE"
         exit 1
       fi
     displayName: Runtime smoke test (built artifact)
     workingDirectory: $(System.DefaultWorkingDirectory)
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'server.log'
+      artifact: 'SmokeTest-Logs'
+      publishLocation: 'pipeline'
+    displayName: 'Publish smoke test log'
+    condition: always() # Publish even if the step fails
