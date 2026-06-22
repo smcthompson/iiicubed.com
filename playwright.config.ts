@@ -19,9 +19,24 @@ export default defineConfig({
         open: 'never',
       },
     ],
+    [
+      'artifacts',
+      [
+        {
+          name: 'screenshot',
+          type: 'image/png',
+        },
+        {
+          name: 'video',
+          type: 'video/webm',
+        },
+      ],
+    ],
   ],
 
   use: {
     baseURL: `http://localhost:${port}`,
+    screenshot: 'on',
+    video: 'on',
   },
 });

@@ -26,6 +26,9 @@ steps:
   - script: npm ci
     displayName: Install dependencies
 
+  - script: npx playwright install --with-deps
+    displayName: Install Playwright dependencies
+
   - script: npm run build
     displayName: Lint and build
 
@@ -85,6 +88,31 @@ steps:
       exit "$TEST_EXIT"
     displayName: Runtime smoke test (built artifact)
     workingDirectory: $(System.DefaultWorkingDirectory)
+
+  - task: PublishTestResults@2
+    displayName: Publish Playwright test report
+    condition: always()
+    inputs:
+      testResultsFormat: JUnit
+      testResultsFiles: test-results/playwright-junit.xml
+      failTaskOnFailedTests: true
+      testRunTitle: Playwright E2E
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Playwright HTML report
+    condition: always()
+    inputs:
+      targetPath: 'playwright-report'
+      artifact: 'Playwright-HTML-Report'
+      publishLocation: 'pipeline'
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish test results attachments
+    condition: always()
+    inputs:
+      targetPath: 'test-results'
+      artifact: 'Playwright-Test-Results'
+      publishLocation: 'pipeline'
 
   - task: PublishPipelineArtifact@1
     inputs:
