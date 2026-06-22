@@ -15,6 +15,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "validate": "npm run format:check && npm run lint"
+    "start:ci": "node dist/server.js",
   },
   "repository": {
     "type": "git",
