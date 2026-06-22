@@ -17,10 +17,10 @@ variables:
   NODE_VERSION: '26.x'
 
 steps:
-  - task: NodeTool@0
+  - task: UseNode@1
     displayName: Use Node.js $(NODE_VERSION)
     inputs:
-      versionSpec: $(NODE_VERSION)
+      version: $(NODE_VERSION)
 
   - script: npm ci
     displayName: Install dependencies
