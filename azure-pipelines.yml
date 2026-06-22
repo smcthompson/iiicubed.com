@@ -26,9 +26,6 @@ steps:
   - script: npm ci
     displayName: Install dependencies
 
-  - script: npx playwright install --with-deps
-    displayName: Install Playwright dependencies
-
   - script: npm run build
     displayName: 'Lint and Build'
 
