@@ -11,10 +11,11 @@
     "format:check": "prettier . --check",
     "validate": "npm run format:check && npm run lint",
     "dev": "tsx watch src/server.ts --ignore-watch node_modules --ignore-watch dist",
-    "start:ci": "node dist/server.js",
     "prestart": "npm run build",
     "start": "node dist/server.js",
+    "start:ci": "node dist/server.js",
     "test": "npx playwright test",
+    "test:ci": "npm run test",
     "test:grep": "npm run test -- --grep"
   },
   "repository": {
