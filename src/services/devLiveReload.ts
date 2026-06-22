@@ -6,7 +6,7 @@ const DEV_RELOAD_EVENTS_PATH = '/__dev/reload';
 const DEV_RELOAD_CLIENT_PATH = '/__dev/reload-client.js';
 
 export function enableDevLiveReload(app: Express): void {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV !== 'development') {
     return;
   }
 
