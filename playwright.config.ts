@@ -8,6 +8,9 @@ const port = Number(process.env.PORT ?? 3000);
 export default defineConfig({
   testDir: './tests',
 
+  workers: 1,
+  retries: process.env.CI ? 2 : 0,
+
   reporter: [
     ['line'],
     [
@@ -42,5 +45,15 @@ export default defineConfig({
     baseURL: `http://localhost:${port}`,
     screenshot: 'on',
     video: 'on',
+  },
+  webServer: {
+    command: 'npm run start:ci',
+    url: `http://localhost:${port}`,
+    reuseExistingServer: !process.env.CI,
+    timeout: 60_000,
+    env: {
+      NODE_ENV: 'production',
+      PORT: port.toString(),
+    },
   },
 });
