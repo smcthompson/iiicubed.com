@@ -13,34 +13,23 @@ export default defineConfig({
 
   reporter: [
     ['line'],
-    [
-      'junit',
+    ['junit', {
+      outputFile: 'test-results/playwright-junit.xml',
+    }],
+    ['html', {
+      outputFolder: 'playwright-report',
+      open: 'never',
+    }],
+    ['artifacts', [
       {
-        outputFile: 'test-results/playwright-junit.xml',
+        name: 'screenshot',
+        type: 'image/png',
+      }, {
+        name: 'video',
+        type: 'video/webm',
       },
-    ],
-    [
-      'html',
-      {
-        outputFolder: 'playwright-report',
-        open: 'never',
-      },
-    ],
-    [
-      'artifacts',
-      [
-        {
-          name: 'screenshot',
-          type: 'image/png',
-        },
-        {
-          name: 'video',
-          type: 'video/webm',
-        },
-      ],
-    ],
+    ]],
   ],
-
   use: {
     baseURL: `http://localhost:${port}`,
     screenshot: 'on',
