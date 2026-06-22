@@ -33,6 +33,7 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${port}`,
     screenshot: 'on',
+    trace: 'on-first-retry',
     video: 'on',
   },
   webServer: {
