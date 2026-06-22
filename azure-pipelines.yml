@@ -15,6 +15,7 @@ pool:
 
 variables:
   NODE_VERSION: '26.x'
+  PORT: '3000'
 
 steps:
   - task: UseNode@1
@@ -35,7 +36,7 @@ steps:
       > "$LOG_FILE"
 
       echo "Starting server in background..."
-      NODE_ENV=production node dist/server.js > "$LOG_FILE" 2>&1 &
+      NODE_ENV=production PORT="$(PORT)" npm run start:ci > "$LOG_FILE" 2>&1 &
       SERVER_PID=$!
       trap 'kill $SERVER_PID 2>/dev/null || true; cat "$LOG_FILE"' EXIT
 
@@ -49,7 +50,7 @@ steps:
           exit 1
         fi
 
-        if grep -q "Server is running on http://localhost:3000" "$LOG_FILE"; then
+        if grep -q "Server is running on http://localhost:$(PORT)" "$LOG_FILE"; then
           READY=1
           break
         fi
@@ -65,15 +66,17 @@ steps:
 
       echo "Server ready message detected"
 
-      if curl --fail --silent --show-error --max-time 5 http://localhost:3000/ > /dev/null; then
         echo "Health check passed with curl"
         tail -n 15 "$LOG_FILE"
         exit 0
       else
+      if ! curl --fail --silent --show-error --max-time 5 "http://localhost:$(PORT)/" > /dev/null; then
         echo "Ready message found but curl check failed"
         tail -n 30 "$LOG_FILE"
         exit 1
       fi
+      PORT="$(PORT)" npm test || TEST_EXIT=$?
+
     displayName: Runtime smoke test (built artifact)
     workingDirectory: $(System.DefaultWorkingDirectory)
 

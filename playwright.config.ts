@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test';
+const port = Number(process.env.PORT ?? 3000);
 
 export default defineConfig({
   testDir: './tests',
@@ -21,6 +22,6 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${port}`,
   },
 });
