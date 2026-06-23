@@ -42,7 +42,8 @@
   "dependencies": {
     "@kitajs/html": "^4.2.13",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "playwright": "^1.61.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
