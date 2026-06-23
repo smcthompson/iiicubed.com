@@ -20,15 +20,6 @@ export default defineConfig({
       outputFolder: 'playwright-report',
       open: 'never',
     }],
-    ['artifacts', [
-      {
-        name: 'screenshot',
-        type: 'image/png',
-      }, {
-        name: 'video',
-        type: 'video/webm',
-      },
-    ]],
   ],
   use: {
     baseURL: `http://localhost:${port}`,
