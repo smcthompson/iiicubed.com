@@ -31,6 +31,15 @@ if "%AZP_TOKEN%"=="" (
 set AZP_POOL=%AZP_POOL: =%
 set AZP_AGENT_NAME=%AZP_AGENT_NAME: =%
 
+echo Building image ado-linux-agent...
+docker build -t ado-linux-agent -f ado-agent\Dockerfile ado-agent
+if %ERRORLEVEL% neq 0 (
+    echo.
+    echo ERROR: Docker image build failed. Container was not started.
+    cd /d "%~dp0"
+    exit /b 1
+)
+
 :: Stop and remove any existing container
 docker stop ado-agent 2>nul
 docker rm ado-agent 2>nul
