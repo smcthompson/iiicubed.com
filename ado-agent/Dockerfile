@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy
+# Base from official Playwright (includes Node + browsers + deps)
+FROM mcr.microsoft.com/playwright:v1.61.0-noble
 
 # Install Node.js 26.x (matches your pipeline)
 RUN apt-get update \
@@ -7,10 +8,6 @@ RUN apt-get update \
   && apt-get install -y nodejs \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
-# Install Playwright package, browser binaries, and OS dependencies
-RUN npm install -g playwright \
-  && npx playwright install --with-deps
 
 # Install Azure Pipelines agent
 WORKDIR /azp
@@ -22,4 +19,6 @@ COPY ./start.sh /azp/start.sh
 RUN sed -i 's/\r$//' /azp/start.sh \
   && chmod +x /azp/start.sh
 
-CMD ["/bin/bash", "/azp/start.sh"]
+ENV NODE_NO_WARNINGS=1
+
+CMD ["/azp/start.sh"]
