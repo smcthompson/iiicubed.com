@@ -60,11 +60,3 @@ steps:
       targetPath: 'test-results'
       artifact: 'Playwright-Test-Results'
       publishLocation: 'pipeline'
-
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: 'server.log'
-      artifact: 'SmokeTest-Logs'
-      publishLocation: 'pipeline'
-    displayName: 'Publish smoke test log'
-    condition: always() # Publish even if the step fails
