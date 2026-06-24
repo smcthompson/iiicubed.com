@@ -37,7 +37,7 @@ steps:
       NODE_ENV: 'production'
 
   - task: PublishTestResults@2
-    displayName: Publish Playwright test report
+    displayName: Publish Test Results
     condition: always()
     inputs:
       testResultsFormat: JUnit
@@ -46,17 +46,17 @@ steps:
       testRunTitle: Playwright E2E
 
   - task: PublishPipelineArtifact@1
-    displayName: Publish Playwright HTML report
+    displayName: Publish Test Report
     condition: always()
     inputs:
       targetPath: 'playwright-report'
-      artifact: 'Playwright-HTML-Report'
+      artifact: 'Playwright-Test-Report'
       publishLocation: 'pipeline'
 
   - task: PublishPipelineArtifact@1
-    displayName: Publish test results attachments
+    displayName: Publish Test Artifacts
     condition: always()
     inputs:
       targetPath: 'test-results'
-      artifact: 'Playwright-Test-Results'
+      artifact: 'Playwright-Test-Artifacts'
       publishLocation: 'pipeline'
