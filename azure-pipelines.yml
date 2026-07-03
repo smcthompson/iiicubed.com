@@ -33,7 +33,7 @@ steps:
     displayName: 'Playwright E2E Tests'
     env:
       CI: 'true'
-      PORT: '3000'
+      PORT: $(PORT)
       NODE_ENV: 'production'
 
   - task: PublishTestResults@2
