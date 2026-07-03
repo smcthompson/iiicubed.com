@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import type { FullConfig, FullResult, Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 import { Buffer } from 'buffer';
 import fs from 'fs';
