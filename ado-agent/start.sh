@@ -2,7 +2,7 @@
 
 # Configure and run the agent
 ./config.sh --unattended \
-  --url "$AZP_URL" \
+  --url "$ADO_ORG_URL" \
   --auth pat \
   --token "$AZP_TOKEN" \
   --pool "$AZP_POOL" \

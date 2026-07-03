@@ -17,8 +17,8 @@ for /f "usebackq tokens=*" %%a in (".env") do (
     set "%%a"
 ) 2>nul
 
-if "%AZP_URL%"=="" (
-    echo ERROR: AZP_URL is not set in .env
+if "%ADO_ORG_URL%"=="" (
+    echo ERROR: ADO_ORG_URL is not set in .env
     @REM pause
     exit /b 1
 )
