@@ -1,0 +1,110 @@
+<html data-bs-theme="dark">
+  <head>
+    <title>Zenbook Duo Monitor Mechanical Layouts</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/the-purple-haze.min.css"
+    />
+  </head>
+
+  <body>
+    <h1>Zenbook Duo mechanical monitor layout options</h1>
+    <p>Model uses chassis dimensions and active-screen rectangles where available. The Zenbook Duo is modeled as two 313.5 x 217.9 mm chassis sections separated by a 26 mm hinge gap.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Side portrait height</th>
+          <th>Duo stack incl. hinge</th>
+          <th>Top width</th>
+          <th>Lower row width</th>
+          <th>Net fit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Option</th>
+          <th>Side portrait height</th>
+          <th>Duo stack incl. hinge</th>
+          <th>Top width</th>
+          <th>Lower row width</th>
+          <th>Net fit</th>
+        </tr>
+        <tr>
+          <td>Tier 1 - Best mechanical fit / highest-res sides</td>
+          <td>433.3 mm</td>
+          <td>461.8 mm</td>
+          <td>816.9 mm</td>
+          <td>815.3 mm</td>
+          <td>side -28.5 mm; top +1.6 mm</td>
+        </tr>
+        <tr>
+          <td>Tier 2 - Lepow/portable FHD-style budget sides</td>
+          <td>429.0 mm</td>
+          <td>461.8 mm</td>
+          <td>816.9 mm</td>
+          <td>839.5 mm</td>
+          <td>side -32.8 mm; top -22.6 mm</td>
+        </tr>
+        <tr>
+          <td>Tier 3 - Compact Lepow 15.6 in 2.5K sides</td>
+          <td>368.3 mm</td>
+          <td>461.8 mm</td>
+          <td>712.6 mm</td>
+          <td>760.5 mm</td>
+          <td>side -93.5 mm; top -47.9 mm</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <h2>Tier 1 - Best mechanical fit / highest-res sides</h2>
+      <p>Side portrait height is 433.32 mm, 28.48 mm shorter than the Duo including a 26 mm hinge gap; top width is within 1.64 mm of the lower row.</p>
+      <img
+        src="/workstation/mechanical/cad-layouts/zenbook_monitor_layout_tier1.svg"
+        alt="Tier 1 - Best mechanical fit / highest-res sides"
+      />
+      <h3>3D view</h3>
+      <model-viewer
+        src="/workstation/mechanical/3d-models/zenbook_monitor_layout_tier1.glb"
+        camera-controls
+        shadow-intensity="1"
+        exposure="0.8"
+      ></model-viewer>
+    </div>
+    <div>
+      <h2>Tier 2 - Lepow/portable FHD-style budget sides</h2>
+      <p>Fits the 17.16 in chassis-height limit, but lower row is 22.6 mm wider than the 34 in top display because the side chassis is wider in portrait.</p>
+      <img
+        src="/workstation/mechanical/cad-layouts/zenbook_monitor_layout_tier2.svg"
+        alt="Tier 2 - Lepow/portable FHD-style budget sides"
+      />
+      <h3>3D view</h3>
+      <model-viewer
+        src="/workstation/mechanical/3d-models/zenbook_monitor_layout_tier2.glb"
+        camera-controls
+        shadow-intensity="1"
+        exposure="0.8"
+      ></model-viewer>
+    </div>
+    <div>
+      <h2>Tier 3 - Compact Lepow 15.6 in 2.5K sides</h2>
+      <p>Compact fallback: side portrait height is far below the Duo stack, and top width is 47.9 mm narrower than the lower row.</p>
+      <img
+        src="/workstation/mechanical/cad-layouts/zenbook_monitor_layout_tier3.svg"
+        alt="Tier 3 - Compact Lepow 15.6 in 2.5K sides"
+      />
+      <h3>3D view</h3>
+      <model-viewer
+        src="/workstation/mechanical/3d-models/zenbook_monitor_layout_tier3.glb"
+        camera-controls
+        shadow-intensity="1"
+        exposure="0.8"
+      ></model-viewer>
+    </div>
+  </body>
+</html>
