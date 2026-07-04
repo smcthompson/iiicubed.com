@@ -428,7 +428,6 @@ class AdoVerificationReporter implements Reporter {
     }
   }
 
-
   private async updateParentRollup(parentId: number): Promise<void> {
     const parent = await this.getWorkItem(parentId, true);
     if (!parent) {
