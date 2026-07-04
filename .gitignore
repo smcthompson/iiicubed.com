@@ -142,5 +142,11 @@ playwright-report/
 # Debugging artifacts
 rest.http
 
+# Explicitly excluded VSCode files
+.vscode/settings.json
+
+# Continue Local LLM Configurations
+.continue/
+
 # Bootstrap Built Files
 public/css/the-purple-haze*
