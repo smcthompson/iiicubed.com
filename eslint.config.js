@@ -1,15 +1,11 @@
 import js from '@eslint/js';
 import tsParser from '@typescript-eslint/parser';
 import tseslint from 'typescript-eslint';
+import prettierPlugin from 'eslint-plugin-prettier';
 
 export default tseslint.config(
   {
-    ignores: [
-      'dist/**',
-      'node_modules/**',
-      'playwright-report/**',
-      'test-results/**',
-    ],
+    ignores: ['dist/**', 'node_modules/**', 'playwright-report/**', 'test-results/**', 'public/**', 'src/scss/**'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -75,6 +71,15 @@ export default tseslint.config(
         navigator: 'readonly',
         event: 'readonly',
       },
+    },
+  },
+  {
+    files: ['**/*.{js,ts,tsx,jsx,css,scss,html}'],
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     },
   },
 );
