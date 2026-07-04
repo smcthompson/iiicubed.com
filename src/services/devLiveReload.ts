@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Express, Request, Response } from 'express';
+import { spawn } from 'node:child_process';
 
 const DEV_RELOAD_EVENTS_PATH = '/__dev/reload';
 const DEV_RELOAD_CLIENT_PATH = '/__dev/reload-client.js';
@@ -78,6 +79,31 @@ export function enableDevLiveReload(app: Express): void {
     debounceTimer = setTimeout(notifyReload, 150);
   };
 
+  // Watch SCSS directory and run the CSS build when SCSS changes are detected.
+  const scssDir = path.resolve(process.cwd(), 'src', 'scss');
+  let buildDebounceTimer: NodeJS.Timeout | undefined;
+
+  const scheduleCssBuild = () => {
+    if (buildDebounceTimer) {
+      clearTimeout(buildDebounceTimer);
+    }
+
+    buildDebounceTimer = setTimeout(() => {
+      // Run the npm script to build CSS.
+      const child = spawn('npm', ['run', 'build:css'], { shell: true, stdio: 'inherit' });
+      child.on('close', (code) => {
+        // eslint-disable-next-line no-console
+        console.log(`[dev-reload] npm run build:css exited with code ${code}`);
+        // After CSS is rebuilt, trigger a reload so clients pick up the new CSS.
+        scheduleReload();
+      });
+      child.on('error', (err) => {
+        // eslint-disable-next-line no-console
+        console.error('[dev-reload] failed to run build:css', err);
+      });
+    }, 150);
+  };
+
   heartbeatTimer = setInterval(() => {
     for (const client of clients) {
       client.write(': heartbeat\n\n');
@@ -97,6 +123,20 @@ export function enableDevLiveReload(app: Express): void {
       scheduleReload();
     }),
   );
+
+  // Add SCSS watcher if the directory exists
+  if (fs.existsSync(scssDir)) {
+    const scssWatcher = fs.watch(scssDir, (eventType, fileName) => {
+      if (!fileName) return;
+      const name = String(fileName);
+      if (!name.endsWith('.scss')) return;
+      // eslint-disable-next-line no-console
+      console.log(`[dev-reload] SCSS change detected: ${name} (${eventType})`);
+      scheduleCssBuild();
+    });
+
+    watchers.push(scssWatcher);
+  }
 
   const cleanup = () => {
     if (heartbeatTimer) {

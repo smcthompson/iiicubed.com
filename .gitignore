@@ -141,3 +141,6 @@ playwright-report/
 
 # Debugging artifacts
 rest.http
+
+# Bootstrap Built Files
+public/css/the-purple-haze*
