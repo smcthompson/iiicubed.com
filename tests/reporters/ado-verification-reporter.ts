@@ -150,12 +150,21 @@ class AdoVerificationReporter implements Reporter {
       const ids = [...this.aggregates.keys()];
       const m = `[ado-verification-reporter] Aggregates: count=${this.aggregates.size} ids=${ids.join(',')}`;
       console.log(m);
-      try { fs.mkdirSync(path.resolve('test-results'), { recursive: true }); fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), m + '\n'); } catch (err) { console.debug(`[ado-verification-reporter] Failed to write aggregates log: ${String(err)}`); }
+      try {
+        fs.mkdirSync(path.resolve('test-results'), { recursive: true });
+        fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), m + '\n');
+      } catch (err) {
+        console.debug(`[ado-verification-reporter] Failed to write aggregates log: ${String(err)}`);
+      }
       if (process.env.ADO_VERIFICATION_VERBOSE === 'true') {
         for (const [id, agg] of this.aggregates) {
           const m2 = `[ado-verification-reporter] Aggregate ${id}: outcome=${agg.outcome} tests=${agg.tests.length}`;
           console.log(m2);
-          try { fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), m2 + '\n'); } catch (err) { console.debug(`[ado-verification-reporter] Failed to write aggregate entry: ${String(err)}`); }
+          try {
+            fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), m2 + '\n');
+          } catch (err) {
+            console.debug(`[ado-verification-reporter] Failed to write aggregate entry: ${String(err)}`);
+          }
         }
       }
     } catch (e) {
@@ -401,13 +410,15 @@ class AdoVerificationReporter implements Reporter {
         const picklist = await this.request<Record<string, unknown>>('GET', `/_apis/wit/picklists/${encodeURIComponent(picklistId)}?api-version=${encodeURIComponent(this.options.apiVersion)}`);
         const itemsRaw = picklist?.['items'] ?? picklist?.['values'] ?? picklist?.['allowedValues'] ?? [];
         if (!Array.isArray(itemsRaw)) return [];
-        return itemsRaw.map((item) => {
-          if (item && typeof item === 'object') {
-            const it = item as Record<string, unknown>;
-            return String(it['value'] ?? it['name'] ?? '');
-          }
-          return String(item ?? '');
-        }).filter(Boolean);
+        return itemsRaw
+          .map((item) => {
+            if (item && typeof item === 'object') {
+              const it = item as Record<string, unknown>;
+              return String(it['value'] ?? it['name'] ?? '');
+            }
+            return String(item ?? '');
+          })
+          .filter(Boolean);
       } catch {
         return [];
       }
@@ -569,7 +580,11 @@ class AdoVerificationReporter implements Reporter {
     const text = await response.text();
     if (!response.ok) {
       const err = `ADO API ${method} ${url} failed (${response.status}): ${text}`;
-      try { fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), err + '\n'); } catch (e) { console.debug(`[ado-verification-reporter] Failed to write error log: ${String(e)}`); }
+      try {
+        fs.appendFileSync(path.resolve('test-results/ado-reporter.log'), err + '\n');
+      } catch (e) {
+        console.debug(`[ado-verification-reporter] Failed to write error log: ${String(e)}`);
+      }
       throw new Error(err);
     }
 
@@ -592,7 +607,7 @@ class AdoVerificationReporter implements Reporter {
       return JSON.parse(text) as T;
     } catch (e) {
       console.debug(`[ado-verification-reporter] JSON parse failed: ${String(e)}`);
-      return (text as unknown) as T;
+      return text as unknown as T;
     }
   }
 
