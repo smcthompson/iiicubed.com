@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="744" height="1000" viewBox="0 0 744 1000">
+<rect width="100%" height="100%" fill="#fbfbfb"/>
+<text x="372" y="35" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700">Tier 3 - Compact Lepow 15.6 in 2.5K sides</text>
+<text x="372" y="62" text-anchor="middle" font-family="Arial" font-size="13">All dimensions are chassis / active display, in mm. Side monitors are rotated portrait.</text>
+<rect x="84.0" y="154.6" width="575.9" height="331.4" fill="#111" stroke="#222" stroke-width="1"/>
+<rect x="90.2" y="161.8" width="563.5" height="317.0" fill="#234a6f" stroke="#666" stroke-width="1"/>
+<text x="371.9" y="308.2" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700">Dell U3223QE 32 in 4K</text>
+<text x="371.9" y="328.4" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">3840×2160</text>
+<line x1="84.0" y1="145.0" x2="659.9" y2="145.0" stroke="#0b4ea2" stroke-width="1"/>
+<text x="371.9" y="137.0" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">712.6 mm chassis width</text>
+<line x1="669.6" y1="154.6" x2="669.6" y2="486.0" stroke="#0b4ea2" stroke-width="1"/>
+<text x="669.6" y="336.3" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">410.0 mm height</text>
+<rect x="64.6" y="539.9" width="180.6" height="297.6" fill="#111" stroke="#222" stroke-width="1"/>
+<rect x="76.5" y="549.2" width="157.0" height="279.1" fill="#2f5633" stroke="#666" stroke-width="1"/>
+<text x="155.0" y="676.6" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">Lepow Z1ProMax 15.6 in 2.5K class</text>
+<text x="155.0" y="695.2" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">2560×1440/1600 class</text>
+<line x1="64.6" y1="849.7" x2="245.3" y2="849.7" stroke="#0b4ea2" stroke-width="1"/>
+<text x="155.0" y="865.7" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">223.5 mm portrait width</text>
+<rect x="498.6" y="539.9" width="180.6" height="297.6" fill="#111" stroke="#222" stroke-width="1"/>
+<rect x="510.4" y="549.2" width="157.0" height="279.1" fill="#2f5633" stroke="#666" stroke-width="1"/>
+<text x="588.9" y="676.6" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">Lepow Z1ProMax 15.6 in 2.5K class</text>
+<text x="588.9" y="695.2" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">2560×1440/1600 class</text>
+<line x1="498.6" y1="849.7" x2="679.2" y2="849.7" stroke="#0b4ea2" stroke-width="1"/>
+<text x="588.9" y="865.7" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">223.5 mm portrait width</text>
+<line x1="52.5" y1="539.9" x2="52.5" y2="837.6" stroke="#0b4ea2" stroke-width="1"/>
+<text x="52.5" y="704.8" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">368.3 mm portrait height</text>
+<rect x="245.3" y="502.2" width="253.3" height="176.1" fill="#111" stroke="#222" stroke-width="1"/>
+<rect x="245.3" y="699.3" width="253.3" height="176.1" fill="#111" stroke="#222" stroke-width="1"/>
+<rect x="250.1" y="514.1" width="243.7" height="152.3" fill="#334a69" stroke="#666" stroke-width="1"/>
+<text x="371.9" y="586.2" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">Zenbook Duo 14" 16:10</text>
+<text x="371.9" y="601.5" text-anchor="middle" font-family="Arial" font-size="10" font-weight="700">2880×1800</text>
+<rect x="250.1" y="711.2" width="243.7" height="152.3" fill="#334a69" stroke="#666" stroke-width="1"/>
+<text x="371.9" y="783.3" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">Zenbook Duo 14" 16:10</text>
+<text x="371.9" y="798.6" text-anchor="middle" font-family="Arial" font-size="10" font-weight="700">2880×1800</text>
+<rect x="245.3" y="678.3" width="253.3" height="21.0" fill="#777" stroke="#777" stroke-width="1"/>
+<text x="371.9" y="692.0" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700">hinge gap 26 mm</text>
+<line x1="245.3" y1="887.5" x2="498.6" y2="887.5" stroke="#0b4ea2" stroke-width="1"/>
+<text x="371.9" y="903.5" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">313.5 mm Duo width</text>
+<line x1="510.7" y1="502.2" x2="510.7" y2="875.4" stroke="#0b4ea2" stroke-width="1"/>
+<text x="510.7" y="704.8" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">461.8 mm Duo stack incl. hinge</text>
+<line x1="64.6" y1="911.7" x2="679.2" y2="911.7" stroke="#0b4ea2" stroke-width="1"/>
+<text x="371.9" y="927.7" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700">lower row total 760.5 mm</text>
+<text x="25" y="935" font-family="Arial" font-size="14" font-weight="700">Fit notes:</text>
+<text x="25" y="958" font-family="Arial" font-size="13">• Side portrait height minus Duo stack: -93.5 mm. Top width minus lower row: -47.9 mm.</text>
+<text x="25" y="980" font-family="Arial" font-size="13">• Compact fallback: side portrait height is far below the Duo stack, and top width is 47.9 mm narrower than the lower row.</text>
+</svg>
