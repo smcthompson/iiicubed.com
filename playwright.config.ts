@@ -33,13 +33,19 @@ export default defineConfig({
       },
     ],
     ['line'],
-    ['junit', {
-      outputFile: 'test-results/playwright-junit.xml',
-    }],
-    ['html', {
-      outputFolder: 'playwright-report',
-      open: 'never',
-    }],
+    [
+      'junit',
+      {
+        outputFile: 'test-results/playwright-junit.xml',
+      },
+    ],
+    [
+      'html',
+      {
+        outputFolder: 'playwright-report',
+        open: 'never',
+      },
+    ],
   ],
   use: {
     baseURL: `http://localhost:${port}`,

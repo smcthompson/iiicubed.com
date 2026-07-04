@@ -15,15 +15,11 @@ test(
     });
 
     await test.step('Then the QA dashboard heading is visible', async () => {
-      await expect(
-        page.getByRole('heading', { name: /qa dashboard/i }),
-      ).toBeVisible();
+      await expect(page.getByRole('heading', { name: /qa dashboard/i })).toBeVisible();
     });
 
     await test.step('And the Load Build Status button is visible', async () => {
-      await expect(
-        page.getByRole('button', { name: 'Load Build Status' }),
-      ).toBeVisible();
+      await expect(page.getByRole('button', { name: 'Load Build Status' })).toBeVisible();
     });
   },
 );
@@ -51,9 +47,7 @@ test(
     });
 
     await test.step('And the response body includes the missing route message', async () => {
-      await expect(page.locator('body')).toContainText(
-        `Cannot GET ${missingRoute}`,
-      );
+      await expect(page.locator('body')).toContainText(`Cannot GET ${missingRoute}`);
     });
   },
 );

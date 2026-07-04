@@ -59,9 +59,7 @@ export function enableDevLiveReload(app: Express): void {
 })();`);
   });
 
-  const watchedRoots = ['src', 'public']
-    .map((relativePath) => path.resolve(process.cwd(), relativePath))
-    .filter((absolutePath) => fs.existsSync(absolutePath));
+  const watchedRoots = ['src', 'public'].map((relativePath) => path.resolve(process.cwd(), relativePath)).filter((absolutePath) => fs.existsSync(absolutePath));
 
   let debounceTimer: NodeJS.Timeout | undefined;
 
