@@ -11,7 +11,8 @@ export function Layout(title: string, content: JSX.Element) {
 
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          type="text/css"
+          href="/css/the-purple-haze.min.css"
         />
       </head>
 
