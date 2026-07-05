@@ -15,19 +15,19 @@
   $font-size-base: $font-size-base,
   $spacers: $spacers,
   $border-radius: $border-radius,
-  $container-max-widths: $container-max-widths
-  , $link-color: $link-color
-  , $line-height-base: $line-height-base
-  , $headings-line-height: $headings-line-height
-  , $btn-padding-y: $btn-padding-y
-  , $btn-padding-x: $btn-padding-x
-  , $btn-border-radius: $btn-border-radius
-  , $input-padding-y: $input-padding-y
-  , $input-padding-x: $input-padding-x
-  , $input-border-color: $input-border-color
-  , $input-focus-box-shadow: $input-focus-box-shadow
-  , $box-shadow: $box-shadow
-  , $box-shadow-sm: $box-shadow-sm
+  $container-max-widths: $container-max-widths,
+  $link-color: $link-color,
+  $line-height-base: $line-height-base,
+  $headings-line-height: $headings-line-height,
+  $btn-padding-y: $btn-padding-y,
+  $btn-padding-x: $btn-padding-x,
+  $btn-border-radius: $btn-border-radius,
+  $input-padding-y: $input-padding-y,
+  $input-padding-x: $input-padding-x,
+  $input-border-color: $input-border-color,
+  $input-focus-box-shadow: $input-focus-box-shadow,
+  $box-shadow: $box-shadow,
+  $box-shadow-sm: $box-shadow-sm
 );
 
 // 3. Icons
