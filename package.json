@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "npm run lint && npm run build:css && tsc",
-    "build:css": "sass src/scss/the-purple-haze.scss public/css/the-purple-haze.min.css",
+    "build:css": "sass --quiet-deps src/scss/the-purple-haze.scss public/css/the-purple-haze.min.css",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write && eslint . --ext .js,.ts,.tsx --fix",
