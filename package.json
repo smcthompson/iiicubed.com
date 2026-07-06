@@ -17,7 +17,8 @@
     "start:ci": "node dist/server.js",
     "test": "npx playwright test",
     "test:ci": "npm run test",
-    "test:grep": "npm run test -- --grep"
+    "test:grep": "npm run test -- --grep",
+    "workstation:migrate": "tsx src/app/workstation/infrastructure/sqlserver/migrations/runWorkstationMigrations.ts"
   },
   "repository": {
     "type": "git",
