@@ -1,0 +1,230 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "databaseName": {
+      "value": "workstation"
+    },
+    "tier": {
+      "value": "GeneralPurpose"
+    },
+    "skuName": {
+      "value": "GP_S_Gen5_2"
+    },
+    "location": {
+      "value": "centralus"
+    },
+    "maxSizeBytes": {
+      "value": 34359738368
+    },
+    "sampleName": {
+      "value": ""
+    },
+    "serverName": {
+      "value": "iiicubed-sql"
+    },
+    "licenseType": {
+      "value": ""
+    },
+    "readScaleOut": {
+      "value": ""
+    },
+    "zoneRedundant": {
+      "value": false
+    },
+    "minCapacity": {
+      "value": "0.5"
+    },
+    "autoPauseDelay": {
+      "value": 60
+    },
+    "numberOfReplicas": {
+      "value": 0
+    },
+    "enableADS": {
+      "value": false
+    },
+    "allowAzureIps": {
+      "value": true
+    },
+    "allowClientIp": {
+      "value": true
+    },
+    "clientIpValue": {
+      "value": "67.10.26.190"
+    },
+    "databaseTags": {
+      "value": {}
+    },
+    "serverTags": {
+      "value": {}
+    },
+    "enableVA": {
+      "value": false
+    },
+    "vaStoragelessEnabled": {
+      "value": false
+    },
+    "enableSqlLedger": {
+      "value": false
+    },
+    "enableDigestStorage": {
+      "value": "Disabled"
+    },
+    "digestStorageOption": {
+      "value": ""
+    },
+    "digestStorageName": {
+      "value": ""
+    },
+    "blobStorageContainerName": {
+      "value": ""
+    },
+    "retentionDays": {
+      "value": ""
+    },
+    "retentionPolicy": {
+      "value": false
+    },
+    "digestAccountResourceGroup": {
+      "value": ""
+    },
+    "isNewDigestLocation": {
+      "value": false
+    },
+    "digestRegion": {
+      "value": ""
+    },
+    "storageAccountdigestRegion": {
+      "value": ""
+    },
+    "isPermissionAssigned": {
+      "value": false
+    },
+    "sqlLedgerTemplateLink": {
+      "value": "https://sqlazureextension.hosting.portal.azure.net/sqlazureextension/Content/2.1.03456.52--055367/DeploymentTemplates/SqlLedger.json"
+    },
+    "useVAManagedIdentity": {
+      "value": false
+    },
+    "enablePrivateEndpoint": {
+      "value": false
+    },
+    "privateEndpointNestedTemplateId": {
+      "value": "pe-5196c1ae-cc13-44b3-b259-f35b0893f016"
+    },
+    "privateEndpointSubscriptionId": {
+      "value": ""
+    },
+    "privateEndpointResourceGroup": {
+      "value": ""
+    },
+    "privateEndpointName": {
+      "value": ""
+    },
+    "privateEndpointLocation": {
+      "value": ""
+    },
+    "privateEndpointSubnetId": {
+      "value": ""
+    },
+    "privateLinkServiceName": {
+      "value": ""
+    },
+    "privateLinkServiceServiceId": {
+      "value": ""
+    },
+    "privateEndpointVnetSubscriptionId": {
+      "value": ""
+    },
+    "privateEndpointVnetResourceGroup": {
+      "value": ""
+    },
+    "privateEndpointVnetName": {
+      "value": ""
+    },
+    "privateEndpointSubnetName": {
+      "value": ""
+    },
+    "enablePrivateDnsZone": {
+      "value": true
+    },
+    "privateLinkPrivateDnsZoneFQDN": {
+      "value": "privatelink.database.windows.net"
+    },
+    "privateLinkPrivateDnsZoneRG": {
+      "value": ""
+    },
+    "privateEndpointDnsRecordUniqueId": {
+      "value": "5196c1ae-cc13-44b3-b259-f35b0893f019"
+    },
+    "privateEndpointTemplateLink": {
+      "value": "https://sqlazureextension.hosting.portal.azure.net/sqlazureextension/Content/2.1.03456.52--055367/DeploymentTemplates/PrivateEndpoint.json"
+    },
+    "privateDnsForPrivateEndpointTemplateLink": {
+      "value": "https://sqlazureextension.hosting.portal.azure.net/sqlazureextension/Content/2.1.03456.52--055367/DeploymentTemplates/PrivateDnsForPrivateEndpoint.json"
+    },
+    "privateDnsForPrivateEndpointNicTemplateLink": {
+      "value": "https://sqlazureextension.hosting.portal.azure.net/sqlazureextension/Content/2.1.03456.52--055367/DeploymentTemplates/PrivateDnsForPrivateEndpointNic.json"
+    },
+    "privateDnsForPrivateEndpointIpConfigTemplateLink": {
+      "value": "https://sqlazureextension.hosting.portal.azure.net/sqlazureextension/Content/2.1.03456.52--055367/DeploymentTemplates/PrivateDnsForPrivateEndpointIpConfig.json"
+    },
+    "clientIpRuleName": {
+      "value": "ClientIp-2026-7-5_23-35-41"
+    },
+    "minimalTlsVersion": {
+      "value": "1.2"
+    },
+    "publicNetworkAccess": {
+      "value": "Enabled"
+    },
+    "connectionType": {
+      "value": "Default"
+    },
+    "requestedBackupStorageRedundancy": {
+      "value": "Local"
+    },
+    "availabilityZone": {
+      "value": ""
+    },
+    "useFreeLimit": {
+      "value": true
+    },
+    "freeLimitExhaustionBehavior": {
+      "value": "AutoPause"
+    },
+    "maintenanceConfigurationId": {
+      "value": "/subscriptions/1bc1ce6e-17ea-4159-be0f-417f621a14f7/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_CentralUS_DB_2"
+    },
+    "administrators": {
+      "value": {
+        "administratorType": "activeDirectory",
+        "login": "iiicubed.com@gmail.com",
+        "sid": "894d8f43-d3a1-40c7-bdb6-d01d1028a9cc",
+        "tenantId": "b59592b1-87c5-4f2a-ae86-2c48ba8e87f3",
+        "azureADOnlyAuthentication": true,
+        "principalType": "User"
+      }
+    },
+    "identity": {
+      "value": {
+        "type": "None"
+      }
+    },
+    "primaryUserAssignedIdentityId": {
+      "value": ""
+    },
+    "federatedClientId": {
+      "value": ""
+    },
+    "servicePrincipal": {
+      "value": {
+        "type": "None"
+      }
+    }
+  }
+}

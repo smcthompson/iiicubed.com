@@ -20,11 +20,7 @@ export class GetWorkstationFoundationStatus {
   public constructor(private readonly dependencies: WorkstationFoundationStatusDependencies) {}
 
   public async execute(): Promise<WorkstationFoundationStatus> {
-    const [products, constraints, rankedLayouts] = await Promise.all([
-      this.dependencies.productRepository.findProducts({ includeEliminated: true }),
-      this.dependencies.constraintRepository.findActiveConstraints(),
-      this.dependencies.layoutCandidateRepository.findRankedLayoutCandidates(5),
-    ]);
+    const [products, constraints, rankedLayouts] = await Promise.all([this.dependencies.productRepository.findProducts({ includeEliminated: true }), this.dependencies.constraintRepository.findActiveConstraints(), this.dependencies.layoutCandidateRepository.findRankedLayoutCandidates(5)]);
 
     return {
       application: 'workstation',

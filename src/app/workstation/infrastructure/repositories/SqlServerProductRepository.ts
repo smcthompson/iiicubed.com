@@ -1,9 +1,6 @@
 import type { QueryExecutor, QueryParameters } from '#/app/shared/database/QueryExecutor.js';
 import type { Product, ProductCategory, ProductStatus } from '#/app/workstation/domain/Product.js';
-import type {
-  ProductRepository,
-  ProductSearchCriteria,
-} from '#/app/workstation/domain/repositories/ProductRepository.js';
+import type { ProductRepository, ProductSearchCriteria } from '#/app/workstation/domain/repositories/ProductRepository.js';
 
 interface ProductRecord {
   id: string;
