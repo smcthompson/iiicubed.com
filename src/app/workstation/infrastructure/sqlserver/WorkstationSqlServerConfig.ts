@@ -3,21 +3,22 @@ import { readOptionalEnv, readRequiredEnv } from '#/app/shared/config/readRequir
 export interface WorkstationSqlServerConfig {
   server: string;
   database: string;
-  user: string;
-  password: string;
+  // TCP port
   port: number;
+  // TLS settings
   encrypt: boolean;
   trustServerCertificate: boolean;
+  // Client id for the user-assigned managed identity (required)
+  managedIdentityClientId: string;
 }
 
 export function loadWorkstationSqlServerConfig(): WorkstationSqlServerConfig {
   return {
     server: readRequiredEnv('WORKSTATION_SQL_SERVER'),
     database: readRequiredEnv('WORKSTATION_SQL_DATABASE'),
-    user: readRequiredEnv('WORKSTATION_SQL_USER'),
-    password: readRequiredEnv('WORKSTATION_SQL_PASSWORD'),
     port: Number(readOptionalEnv('WORKSTATION_SQL_PORT', '1433')),
     encrypt: readOptionalEnv('WORKSTATION_SQL_ENCRYPT', 'true') === 'true',
     trustServerCertificate: readOptionalEnv('WORKSTATION_SQL_TRUST_SERVER_CERTIFICATE', 'false') === 'true',
+    managedIdentityClientId: readRequiredEnv('WORKSTATION_SQL_MANAGED_IDENTITY_CLIENT_ID'),
   };
 }
