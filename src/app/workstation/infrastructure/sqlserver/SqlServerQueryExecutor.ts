@@ -1,5 +1,5 @@
 import sql from 'mssql';
-import type { QueryExecutor, QueryParameters, QueryParameterValue, QueryResult } from '#/app/shared/database/QueryExecutor.js';
+import type { QueryExecutor, QueryParameters, QueryParameterValue, QueryResult } from '#/shared';
 
 function bindParameter(request: sql.Request, name: string, value: QueryParameterValue): void {
   request.input(name, value);

@@ -1,4 +1,4 @@
-import type { ConstraintEvaluation } from '#/app/workstation/domain/Constraint.js';
+import type { ConstraintEvaluation } from '#/workstation';
 
 export interface LayoutCandidate {
   id: string;

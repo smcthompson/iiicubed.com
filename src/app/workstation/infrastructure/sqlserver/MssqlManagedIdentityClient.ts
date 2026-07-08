@@ -1,28 +1,37 @@
-import * as sql from 'mssql';
-import { ManagedIdentityCredential } from '@azure/identity';
-import { WorkstationSqlServerConfig, loadWorkstationSqlServerConfig } from '#/app/workstation/infrastructure/sqlserver/WorkstationSqlServerConfig.js';
+import sql from 'mssql';
+import { DefaultAzureCredential } from '@azure/identity';
+import { WorkstationSqlServerConfig, loadWorkstationSqlServerConfig } from '#/workstation';
 import type { QueryExecutor, QueryParameters, QueryResult } from '#/app/shared/database/QueryExecutor.js';
 
 const TOKEN_SCOPE = 'https://database.windows.net/.default';
 
 export class MssqlManagedIdentityClient implements QueryExecutor {
   private pool?: sql.ConnectionPool;
-  private credential: ManagedIdentityCredential;
+  private credential: DefaultAzureCredential;
   private config: WorkstationSqlServerConfig;
 
   constructor(config?: WorkstationSqlServerConfig) {
     this.config = config ?? loadWorkstationSqlServerConfig();
-    // This application requires a user-assigned managed identity client id
-    if (!this.config.managedIdentityClientId) {
-      throw new Error('managedIdentityClientId is required for user-assigned managed identity');
+    // Use DefaultAzureCredential so local dev fallbacks (Azure CLI / VS Code)
+    // are available while still supporting user-assigned managed identity in Azure.
+    // The managedIdentityClientId is optional — when present it will prefer the
+    // user-assigned managed identity; otherwise DefaultAzureCredential will
+    // fall back to environment/service principal or CLI credentials.
+    if (this.config.managedIdentityClientId) {
+      this.credential = new DefaultAzureCredential({ managedIdentityClientId: this.config.managedIdentityClientId });
+    } else {
+      this.credential = new DefaultAzureCredential();
     }
-    this.credential = new ManagedIdentityCredential(this.config.managedIdentityClientId);
   }
 
   private async acquireAccessToken(): Promise<string> {
-    const token = await this.credential.getToken(TOKEN_SCOPE);
-    if (!token || !token.token) throw new Error('Failed to acquire access token for SQL');
-    return token.token;
+    try {
+      const token = await this.credential.getToken(TOKEN_SCOPE);
+      if (!token || !token.token) throw new Error('Failed to acquire access token for SQL');
+      return token.token;
+    } catch (err) {
+      throw new Error(`Failed to acquire access token for SQL: ${String(err)}`);
+    }
   }
 
   private async ensurePool(): Promise<sql.ConnectionPool> {

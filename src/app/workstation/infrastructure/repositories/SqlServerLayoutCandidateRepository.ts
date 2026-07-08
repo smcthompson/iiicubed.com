@@ -1,6 +1,5 @@
-import type { QueryExecutor } from '#/app/shared/database/QueryExecutor.js';
-import type { LayoutCandidate } from '#/app/workstation/domain/LayoutCandidate.js';
-import type { LayoutCandidateRepository } from '#/app/workstation/domain/repositories/LayoutCandidateRepository.js';
+import type { QueryExecutor } from '#/shared';
+import type { LayoutCandidate, LayoutCandidateRepository } from '#/workstation';
 
 interface LayoutCandidateRecord {
   id: string;

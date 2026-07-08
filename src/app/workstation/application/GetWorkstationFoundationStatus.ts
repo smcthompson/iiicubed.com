@@ -1,6 +1,4 @@
-import type { ConstraintRepository } from '#/app/workstation/domain/repositories/ConstraintRepository.js';
-import type { LayoutCandidateRepository } from '#/app/workstation/domain/repositories/LayoutCandidateRepository.js';
-import type { ProductRepository } from '#/app/workstation/domain/repositories/ProductRepository.js';
+import type { ConstraintRepository, LayoutCandidateRepository, ProductRepository } from '#/workstation';
 
 export interface WorkstationFoundationStatus {
   application: 'workstation';

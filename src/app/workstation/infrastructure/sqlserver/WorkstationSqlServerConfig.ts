@@ -8,8 +8,9 @@ export interface WorkstationSqlServerConfig {
   // TLS settings
   encrypt: boolean;
   trustServerCertificate: boolean;
-  // Client id for the user-assigned managed identity (required)
-  managedIdentityClientId: string;
+  // Client id for the user-assigned managed identity (optional)
+  // If not provided, DefaultAzureCredential will use environment or CLI/SP credentials.
+  managedIdentityClientId?: string;
 }
 
 export function loadWorkstationSqlServerConfig(): WorkstationSqlServerConfig {
@@ -19,6 +20,6 @@ export function loadWorkstationSqlServerConfig(): WorkstationSqlServerConfig {
     port: Number(readOptionalEnv('WORKSTATION_SQL_PORT', '1433')),
     encrypt: readOptionalEnv('WORKSTATION_SQL_ENCRYPT', 'true') === 'true',
     trustServerCertificate: readOptionalEnv('WORKSTATION_SQL_TRUST_SERVER_CERTIFICATE', 'false') === 'true',
-    managedIdentityClientId: readRequiredEnv('WORKSTATION_SQL_MANAGED_IDENTITY_CLIENT_ID'),
+    managedIdentityClientId: readOptionalEnv('WORKSTATION_SQL_MANAGED_IDENTITY_CLIENT_ID', ''),
   };
 }

@@ -1,8 +1,5 @@
 import 'dotenv/config';
-import { SqlServerQueryExecutor } from '#/app/workstation/infrastructure/sqlserver/SqlServerQueryExecutor.js';
-import { createWorkstationSqlServerPool } from '#/app/workstation/infrastructure/sqlserver/createWorkstationSqlServerPool.js';
-import { loadWorkstationSqlServerConfig } from '#/app/workstation/infrastructure/sqlserver/WorkstationSqlServerConfig.js';
-import { workstationMigrations } from '#/app/workstation/infrastructure/sqlserver/migrations/workstationMigrations.js';
+import { SqlServerQueryExecutor, createWorkstationSqlServerPool, loadWorkstationSqlServerConfig, workstationMigrations } from '#/workstation';
 
 interface AppliedMigrationRecord {
   id: string;
@@ -54,7 +51,8 @@ async function run(): Promise<void> {
       // eslint-disable-next-line no-console
       console.log(`Applying ${migration.id}: ${migration.description}`);
 
-      await queryExecutor.query(`
+      await queryExecutor.query(
+        `
         BEGIN TRY
           BEGIN TRANSACTION;
 
@@ -73,10 +71,12 @@ async function run(): Promise<void> {
 
           THROW;
         END CATCH;
-      `, {
-        migrationId: migration.id,
-        description: migration.description,
-      });
+      `,
+        {
+          migrationId: migration.id,
+          description: migration.description,
+        },
+      );
     }
   } finally {
     await pool.close();

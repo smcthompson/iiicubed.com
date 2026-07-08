@@ -1,4 +1,4 @@
-import type { ConstraintDefinition } from '#/app/workstation/domain/Constraint.js';
+import type { ConstraintDefinition } from '#/workstation';
 
 export interface ConstraintRepository {
   findActiveConstraints(): Promise<ConstraintDefinition[]>;

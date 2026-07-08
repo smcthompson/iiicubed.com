@@ -1,4 +1,4 @@
-import type { WorkstationMigration } from '#/app/workstation/infrastructure/sqlserver/migrations/WorkstationMigration.js';
+import type { WorkstationMigration } from '#/workstation';
 
 export const createWorkstationDatabase: WorkstationMigration = {
   id: '001_create_workstation_database',

@@ -1,4 +1,4 @@
-import type { LayoutCandidate } from '#/app/workstation/domain/LayoutCandidate.js';
+import type { LayoutCandidate } from '#/workstation';
 
 export interface LayoutCandidateRepository {
   findRankedLayoutCandidates(limit?: number): Promise<LayoutCandidate[]>;

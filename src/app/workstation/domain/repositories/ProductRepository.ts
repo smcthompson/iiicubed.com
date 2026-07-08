@@ -1,4 +1,4 @@
-import type { Product, ProductCategory } from '#/app/workstation/domain/Product.js';
+import type { Product, ProductCategory } from '#/workstation';
 
 export interface ProductSearchCriteria {
   category?: ProductCategory;

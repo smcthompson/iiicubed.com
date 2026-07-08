@@ -1,6 +1,5 @@
-import type { QueryExecutor } from '#/app/shared/database/QueryExecutor.js';
-import type { ConstraintDefinition, ConstraintOperator } from '#/app/workstation/domain/Constraint.js';
-import type { ConstraintRepository } from '#/app/workstation/domain/repositories/ConstraintRepository.js';
+import type { QueryExecutor } from '#/shared';
+import type { ConstraintDefinition, ConstraintOperator, ConstraintRepository } from '#/workstation';
 
 interface ConstraintRecord {
   id: string;

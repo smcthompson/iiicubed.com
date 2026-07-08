@@ -1,6 +1,5 @@
-import type { QueryExecutor, QueryParameters } from '#/app/shared/database/QueryExecutor.js';
-import type { Product, ProductCategory, ProductStatus } from '#/app/workstation/domain/Product.js';
-import type { ProductRepository, ProductSearchCriteria } from '#/app/workstation/domain/repositories/ProductRepository.js';
+import type { QueryExecutor, QueryParameters } from '#/shared';
+import type { Product, ProductCategory, ProductStatus, ProductRepository, ProductSearchCriteria } from '#/workstation';
 
 interface ProductRecord {
   id: string;
