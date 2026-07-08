@@ -1,4 +1,4 @@
-import { readOptionalEnv, readRequiredEnv } from '#/app/shared/config/readRequiredEnv.js';
+import { readOptionalEnv, readRequiredEnv } from '#/shared';
 
 export interface WorkstationSqlServerConfig {
   server: string;

@@ -20,7 +20,7 @@ export type { LayoutCandidateRepository } from '#/app/workstation/domain/reposit
 export { type WorkstationSqlServerConfig, loadWorkstationSqlServerConfig } from '#/app/workstation/infrastructure/sqlserver/WorkstationSqlServerConfig.js';
 export { createWorkstationSqlServerPool } from '#/app/workstation/infrastructure/sqlserver/createWorkstationSqlServerPool.js';
 export { SqlServerQueryExecutor } from '#/app/workstation/infrastructure/sqlserver/SqlServerQueryExecutor.js';
-export { MssqlManagedIdentityClient, createMssqlManagedIdentityClient } from '#/app/workstation/infrastructure/sqlserver/MssqlManagedIdentityClient.js';
+export { AzureSqlTokenClient, createAzureSqlTokenClient } from '#/app/workstation/infrastructure/sqlserver/AzureSqlTokenClient.js';
 
 // Infrastructure - repositories
 export { SqlServerConstraintRepository } from '#/app/workstation/infrastructure/repositories/SqlServerConstraintRepository.js';

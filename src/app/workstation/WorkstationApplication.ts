@@ -1,10 +1,4 @@
-import { GetWorkstationFoundationStatus } from '#/app/workstation/application/GetWorkstationFoundationStatus.js';
-import { SqlServerQueryExecutor } from '#/app/workstation/infrastructure/sqlserver/SqlServerQueryExecutor.js';
-import { createWorkstationSqlServerPool } from '#/app/workstation/infrastructure/sqlserver/createWorkstationSqlServerPool.js';
-import { loadWorkstationSqlServerConfig } from '#/app/workstation/infrastructure/sqlserver/WorkstationSqlServerConfig.js';
-import { SqlServerConstraintRepository } from '#/app/workstation/infrastructure/repositories/SqlServerConstraintRepository.js';
-import { SqlServerLayoutCandidateRepository } from '#/app/workstation/infrastructure/repositories/SqlServerLayoutCandidateRepository.js';
-import { SqlServerProductRepository } from '#/app/workstation/infrastructure/repositories/SqlServerProductRepository.js';
+import { GetWorkstationFoundationStatus, SqlServerQueryExecutor, createWorkstationSqlServerPool, loadWorkstationSqlServerConfig, SqlServerConstraintRepository, SqlServerLayoutCandidateRepository, SqlServerProductRepository } from '#/workstation';
 
 export interface WorkstationApplication {
   getFoundationStatus: GetWorkstationFoundationStatus;

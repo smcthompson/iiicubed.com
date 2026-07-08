@@ -1,11 +1,11 @@
 import sql from 'mssql';
 import { DefaultAzureCredential } from '@azure/identity';
 import { WorkstationSqlServerConfig, loadWorkstationSqlServerConfig } from '#/workstation';
-import type { QueryExecutor, QueryParameters, QueryResult } from '#/app/shared/database/QueryExecutor.js';
+import type { QueryExecutor, QueryParameters, QueryResult } from '#/shared';
 
 const TOKEN_SCOPE = 'https://database.windows.net/.default';
 
-export class MssqlManagedIdentityClient implements QueryExecutor {
+export class AzureSqlTokenClient implements QueryExecutor {
   private pool?: sql.ConnectionPool;
   private credential: DefaultAzureCredential;
   private config: WorkstationSqlServerConfig;
@@ -89,6 +89,6 @@ export class MssqlManagedIdentityClient implements QueryExecutor {
   }
 }
 
-export function createMssqlManagedIdentityClient(config?: WorkstationSqlServerConfig) {
-  return new MssqlManagedIdentityClient(config);
+export function createAzureSqlTokenClient(config?: WorkstationSqlServerConfig) {
+  return new AzureSqlTokenClient(config);
 }

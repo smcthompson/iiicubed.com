@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getWorkstationApplication } from '#/app/workstation/WorkstationApplication.js';
+import { getWorkstationApplication } from '#/workstation';
 
 const workstationRoutes = Router();
 
