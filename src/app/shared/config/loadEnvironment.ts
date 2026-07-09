@@ -4,9 +4,10 @@ const allowedNodeEnvironments = new Set(['development', 'test', 'production']);
 
 function loadDotenvFile(path: string, override = false): void {
   const result = dotenv.config({ path, override });
+  const error = result.error as NodeJS.ErrnoException | undefined;
 
-  if (result.error && result.error.code !== 'ENOENT') {
-    throw result.error;
+  if (error && error.code !== 'ENOENT') {
+    throw error;
   }
 }
 
