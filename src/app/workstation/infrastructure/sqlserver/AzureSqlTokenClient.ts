@@ -12,6 +12,11 @@ export class AzureSqlTokenClient implements QueryExecutor {
 
   constructor(config?: WorkstationSqlServerConfig) {
     this.config = config ?? loadWorkstationSqlServerConfig();
+
+    if (this.config.authenticationMode === 'sql-password') {
+      throw new Error('AzureSqlTokenClient only supports Azure token authentication. Use createWorkstationSqlServerPool for SQL password authentication.');
+    }
+
     // Use DefaultAzureCredential so local dev fallbacks (Azure CLI / VS Code)
     // are available while still supporting user-assigned managed identity in Azure.
     // The managedIdentityClientId is optional — when present it will prefer the
