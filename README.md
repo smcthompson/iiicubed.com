@@ -2,6 +2,51 @@
 
 Professional portfolio site highlighting my work.
 
+## Environment configuration
+
+The application loads environment variables with `dotenv` in this order:
+
+1. `.env` for common values.
+2. `.env.<NODE_ENV>` for environment-specific overrides.
+
+For example, when `NODE_ENV=development`, `.env` is loaded first and `.env.development` overrides any duplicate values. Supported `NODE_ENV` values are `development`, `test`, and `production`.
+
+Do not commit real `.env*` files. Use local files for secrets and machine-specific configuration.
+
+### Local workstation SQL Server configuration
+
+For local development, the workstation app can use SQL Server authentication against a local Microsoft SQL Server database:
+
+```dotenv
+NODE_ENV=development
+WORKSTATION_SQL_SERVER=localhost
+WORKSTATION_SQL_DATABASE=workstation
+WORKSTATION_SQL_PORT=1433
+WORKSTATION_SQL_ENCRYPT=false
+WORKSTATION_SQL_TRUST_SERVER_CERTIFICATE=true
+WORKSTATION_SQL_AUTHENTICATION=sql-password
+WORKSTATION_SQL_USER=workstation_app
+WORKSTATION_SQL_PASSWORD=your-local-password
+```
+
+Create the local login/user in SQL Server as a local development account:
+
+```sql
+CREATE DATABASE workstation;
+GO
+USE workstation;
+GO
+CREATE LOGIN workstation_app WITH PASSWORD = 'your-local-password';
+CREATE USER workstation_app FOR LOGIN workstation_app;
+ALTER ROLE db_datareader ADD MEMBER workstation_app;
+ALTER ROLE db_datawriter ADD MEMBER workstation_app;
+GO
+```
+
+The default authentication mode is `auto`. In `development`, if `WORKSTATION_SQL_USER` and `WORKSTATION_SQL_PASSWORD` are present, the SQL pool uses SQL Server username/password authentication. Otherwise it falls back to Azure token authentication through `DefaultAzureCredential`.
+
+Windows Integrated Authentication would also be a reasonable local scheme, but the current `mssql`/`tedious` setup does not support it cleanly without adding another driver dependency such as `msnodesqlv8`. For now, a local in-database SQL user is the simplest option without expanding dependencies.
+
 ## Playwright ADO Verification Reporter
 
 The Playwright config includes a custom reporter at `tests/reporters/ado-verification-reporter.ts` that mimics the `@[<id>]` behavior from `playwright-azure-reporter` for Verification work items.
@@ -40,11 +85,17 @@ Authentication (choose one):
 
 ### Tag format in tests
 
-TODO
+Use Playwright tag metadata, not test title suffixes:
+
+```ts
+test('Home Page', { tag: ['@[19]', '@e2e'] }, async ({ page }) => {
+  // test body
+});
+```
 
 ## Authentication: Service Principal (sp-iiicubed-workstation)
 
-The application uses `DefaultAzureCredential` so it can authenticate via multiple mechanisms. For short-term local development and CI without `az login` at runtime, this repository is configured to use a Service Principal named `sp-iiicubed-workstation`.
+The application uses `DefaultAzureCredential` so it can authenticate via multiple mechanisms. For cloud-hosted environments, this repository can use a Service Principal named `sp-iiicubed-workstation`.
 
 Create the service principal (one-time):
 
@@ -54,9 +105,9 @@ az ad sp create-for-rbac --name "sp-iiicubed-workstation" --skip-assignment -o j
 
 Save the returned `appId` (client id), `password` (client secret) and `tenant` values. Configure these as secure environment variables for local runs and in your pipeline:
 
-- `AZURE_TENANT_ID` — tenant id
-- `AZURE_CLIENT_ID` — appId
-- `AZURE_CLIENT_SECRET` — client secret
+- `AZURE_TENANT_ID` â€” tenant id
+- `AZURE_CLIENT_ID` â€” appId
+- `AZURE_CLIENT_SECRET` â€” client secret
 
 Create a contained database user for the service principal and grant the minimal roles required (connect as the Azure AD admin for the server):
 
@@ -70,24 +121,15 @@ ALTER ROLE db_datawriter ADD MEMBER [sp-iiicubed-workstation];
 Notes:
 
 - Use the `appId` or the name `sp-iiicubed-workstation` as the database principal name; using the `appId` avoids ambiguity.
-- You must run these SQL commands as the server's Azure AD admin (your server shows `iiicubed.com@gmail.com` as AD admin).
+- You must run these SQL commands as the server's Azure AD admin.
 
-Runtime configuration (no `az login` required)
+Runtime configuration for Azure token authentication:
 
-- Locally (temporarily) set env vars in PowerShell:
-
-```powershell
-$env:AZURE_TENANT_ID="your-tenant-id"
-$env:AZURE_CLIENT_ID="your-appId"
-$env:AZURE_CLIENT_SECRET="your-client-secret"
-```
-
-- In Bash:
-
-```bash
-export AZURE_TENANT_ID=your-tenant-id
-export AZURE_CLIENT_ID=your-appId
-export AZURE_CLIENT_SECRET=your-client-secret
+```dotenv
+WORKSTATION_SQL_AUTHENTICATION=azure-token
+AZURE_TENANT_ID=your-tenant-id
+AZURE_CLIENT_ID=your-appId
+AZURE_CLIENT_SECRET=your-client-secret
 ```
 
 Pipeline & self-hosted agent
@@ -95,37 +137,8 @@ Pipeline & self-hosted agent
 - Store `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_SECRET` as secret pipeline variables or in a variable group backed by Azure Key Vault. The self-hosted agent will inject them into job environments and `DefaultAzureCredential` will pick them up automatically.
 - If you run the agent as a container, pass a secure env file (do not commit) to `docker run --env-file .agent-env`.
 
-Quick token test (client credentials)
-
-```bash
-curl -X POST \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "client_id=YOUR_CLIENT_ID&scope=https%3A%2F%2Fdatabase.windows.net%2F.default&client_secret=YOUR_CLIENT_SECRET&grant_type=client_credentials" \
-  "https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/v2.0/token"
-```
-
-Node test script
-
-- Create `test-sql-token.cjs` at the repository root to verify token acquisition and a simple `SELECT 1` using the SP credentials with `DefaultAzureCredential` (example script in repo tasks or ask me to add it). Install dependencies `npm install @azure/identity mssql` and run:
-
-```bash
-node test-sql-token.cjs
-```
-
-Security
-
-- Keep the client secret only in secure storage (pipeline secrets, local OS secret store, or Azure Key Vault). Do not commit the secret or `.agent-env` to source control.
-
 Alternatives
 
 - Certificate-based service principal: no plaintext secret; requires secure distribution of private key.
-- Federated credentials (OIDC) from Azure DevOps: allow pipeline jobs to exchange OIDC tokens for AAD tokens without storing secrets; I can help configure this if you prefer zero-secret pipelines.
+- Federated credentials (OIDC) from Azure DevOps: allow pipeline jobs to exchange OIDC tokens for AAD tokens without storing secrets.
 - Managed Identity: requires Azure-hosted runtime (IMDS) and is not suitable for local development without an Azure VM.
-
-Use Playwright tag metadata (not test title suffixes):
-
-```ts
-test('Home Page', { tag: ['@[19]', '@e2e'] }, async ({ page }) => {
-  // test body
-});
-```
