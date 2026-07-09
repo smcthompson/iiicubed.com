@@ -1,5 +1,5 @@
 // Entry point for the application server.
-import 'dotenv/config';
+import '#/shared/config/loadEnvironment.js';
 import express from 'express';
 import { buildStatus, workstationRoutes } from '#/routes';
 import { HomePage } from '#/pages';
