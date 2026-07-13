@@ -1,4 +1,3 @@
-import '#/shared/config/loadEnvironment.js';
 import { readOptionalEnv, readRequiredEnv } from '#/shared';
 
 export type WorkstationSqlAuthenticationMode = 'auto' | 'azure-token' | 'sql-password';
